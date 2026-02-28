@@ -116,4 +116,3 @@ Requires PostgreSQL running on localhost:5432
 ---
 
 *Project created as a recruitment challenge*
-

@@ -51,3 +51,4 @@ Thumbs.db
 .env.*.local
 application-local.properties
 application-local.yml
+.metals

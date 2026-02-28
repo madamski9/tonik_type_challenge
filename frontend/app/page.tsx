@@ -14,9 +14,15 @@ export default function Home() {
         <div className="flex gap-4 justify-center">
           <Link
             href="/game"
-            className="btn px-20"
+            className="btn px-15"
           >
-            Play
+            Play as guest
+          </Link>
+          <Link
+            href="/login"
+            className='btn px-20'
+          >
+            Login
           </Link>
         </div>
       </div>
