@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Type Challenge - Touch Typing Practice Application
 
-## Getting Started
+A fullstack typing speed practice application built with Next.js (frontend) and Spring Boot (backend).
 
-First, run the development server:
+## Tech Stack
+
+- **Frontend**: Next.js 15, TypeScript, TailwindCSS
+- **Backend**: Spring Boot 4.x, Java, PostgreSQL
+- **Infrastructure**: Docker, Docker Compose
+
+## Quick Start
+
+### Run with Docker Compose
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Build and start all services
+docker-compose up --build
+
+# In detached mode (background)
+docker-compose up -d --build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8080
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Stop the application
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+docker-compose down
 
-## Learn More
+# Also remove volumes with data (WARNING: will delete the database)
+docker-compose down -v
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Database
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Data Initialization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The database is automatically initialized with 25 sample typing practice texts during the first run.
 
-## Deploy on Vercel
+The initialization script is located at: `typeChallengeBackend/src/main/resources/db/init.sql`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Manual Data Addition/Update
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you want to add or update data in an already running database:
+
+```bash
+# Copy the SQL file to the container
+docker cp typeChallengeBackend/src/main/resources/db/init.sql job-challenge-db-1:/tmp/init.sql
+
+# Execute the SQL script
+docker exec -i job-challenge-db-1 psql -U postgres -d typeracer_db -f /tmp/init.sql
+```
+
+Or directly via psql:
+
+```bash
+docker exec -i job-challenge-db-1 psql -U postgres -d typeracer_db < typeChallengeBackend/src/main/resources/db/init.sql
+```
+
+### Database Access
+
+```bash
+# Connect to PostgreSQL database
+docker exec -it job-challenge-db-1 psql -U postgres -d typeracer_db
+
+# Example queries:
+# SELECT COUNT(*) FROM text_snippets;
+# SELECT id, LEFT(content, 50) FROM text_snippets;
+```
+
+## Local Development
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Backend
+
+```bash
+cd typeChallengeBackend
+./gradlew bootRun
+```
+
+Requires PostgreSQL running on localhost:5432
+
+## Project Structure
+
+```
+.
+├── docker-compose.yml          # Docker Compose configuration
+├── frontend/                   # Next.js application
+│   ├── app/                   # App Router
+│   ├── components/            # React components
+│   └── Dockerfile
+└── typeChallengeBackend/      # Spring Boot application
+    ├── src/
+    │   └── main/
+    │       ├── java/          # Java source code
+    │       └── resources/
+    │           └── db/        # SQL scripts
+    │               └── init.sql
+    └── Dockerfile
+```
+
+## API Endpoints
+
+- `GET /api/game/random-text` - Get a random text to type
+- `POST /api/game/result` - Save game result
+
+---
+
+*Project created as a recruitment challenge*
+

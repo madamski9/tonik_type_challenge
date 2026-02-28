@@ -13,7 +13,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold mb-4">Get Started</h2>
         <div className="flex gap-4 justify-center">
           <Link
-            href="/play"
+            href="/game"
             className="btn px-20"
           >
             Play

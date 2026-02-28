@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PlayPage = () => {
+const GamePage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const PlayPage = () => {
   )
 }
 
-export default PlayPage
+export default GamePage
