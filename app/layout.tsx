@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Job Challenge"
+  title: "Type Challenge"
 };
 
 export default function RootLayout({
@@ -24,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
+    <html lang="pl" data-theme="caramellatte">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen bg-gray-50`}
+        className={`${geistSans.variable} ${geistMono.variable} flex flex-col min-h-screen`}
       >
         <Navbar />
         <main className="flex-1">{children}</main>

@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-900 text-white shadow-lg">
+    <nav className="navbar bg-base-100 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold hover:text-blue-400">
+          <Link href="/" className="text-xl font-bold">
             Type Challenge
           </Link>
         </div>

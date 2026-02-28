@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white mt-auto">
+    <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
       <div className="container mx-auto px-4 py-6">
         <div className="text-center">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm">
             2026 Type Challenge
           </p>
         </div>
