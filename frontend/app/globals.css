@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: caramellatte --default, abyss
+  themes: garden --default, abyss
 };
 
 @theme {
