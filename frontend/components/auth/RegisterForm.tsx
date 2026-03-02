@@ -60,7 +60,7 @@ const RegisterForm = () => {
         <>
             <ErrorMessage message={error} />
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={(e) => { e.preventDefault(); handleSubmit() }} className="space-y-6">
                 {registerFields.map((field) => (
                     <Input
                         key={field.name}

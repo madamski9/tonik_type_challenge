@@ -1,8 +1,15 @@
 package com.example.typeChallengeBackend.game.entity;
 
-import jakarta.persistence.*;
-import lombok.Data;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "game_results")
@@ -20,7 +27,6 @@ public class GameResult {
     @JoinColumn(name = "text_snippet_id")
     private TextSnippet textSnippet;
 
-    private Double wordsPerMinute;
     private Double accuracy;
     private Integer timeTaken;
     private LocalDateTime createdAt = LocalDateTime.now();

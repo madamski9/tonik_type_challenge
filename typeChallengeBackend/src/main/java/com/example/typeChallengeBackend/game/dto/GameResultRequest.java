@@ -6,7 +6,6 @@ import lombok.Data;
 public class GameResultRequest {
     private Long userId;
     private Long textSnippetId;
-    private Double wordsPerMinute;
     private Double accuracy;
     private Integer timeTaken;
 }

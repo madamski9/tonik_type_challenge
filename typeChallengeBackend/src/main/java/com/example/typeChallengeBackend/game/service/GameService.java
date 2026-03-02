@@ -1,5 +1,7 @@
 package com.example.typeChallengeBackend.game.service;
 
+import org.springframework.stereotype.Service;
+
 import com.example.typeChallengeBackend.game.dto.GameResultRequest;
 import com.example.typeChallengeBackend.game.entity.GameResult;
 import com.example.typeChallengeBackend.game.entity.TextSnippet;
@@ -7,10 +9,8 @@ import com.example.typeChallengeBackend.game.entity.User;
 import com.example.typeChallengeBackend.game.repository.GameResultRepository;
 import com.example.typeChallengeBackend.game.repository.TextSnippetRepository;
 import com.example.typeChallengeBackend.game.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -32,14 +32,9 @@ public class GameService {
 
         result.setUser(user);
         result.setTextSnippet(text);
-        result.setWordsPerMinute(request.getWordsPerMinute());
         result.setAccuracy(request.getAccuracy());
         result.setTimeTaken(request.getTimeTaken());
 
         return gameResultRepository.save(result);
-    }
-
-    public List<GameResult> getLeaderboard() {
-        return gameResultRepository.findTop10ByOrderByWordsPerMinuteDesc();
     }
 }

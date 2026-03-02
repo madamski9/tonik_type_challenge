@@ -8,6 +8,7 @@ import Input from '@/components/ui/Input'
 import Button from '@/components/ui/Button'
 import ErrorMessage from '@/components/ui/ErrorMessage'
 import Link from 'next/link'
+import { setCookie } from '@/lib/cookies'
 
 const LoginForm = () => {
     const router = useRouter()
@@ -45,7 +46,7 @@ const LoginForm = () => {
                 return
             }
             const data = await response.json()
-            localStorage.setItem('user', JSON.stringify(data))
+            setCookie('user', JSON.stringify(data), 7)
             router.push('/game')
         } catch (err) {
             setError('Login failed. Please try again.')
@@ -57,7 +58,7 @@ const LoginForm = () => {
     return (
         <>
             <ErrorMessage message={error} />
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={(e) => { e.preventDefault(); handleSubmit() }} className="space-y-6">
                 {loginFields.map((field) => (
                     <Input
                         key={field.name}
