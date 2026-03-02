@@ -17,7 +17,8 @@ const Navbar = () => {
         setUser(null);
       }
     };
-    checkUser()
+
+    checkUser();
     const interval = setInterval(checkUser, 300);
     return () => clearInterval(interval);
   }, []);
@@ -32,14 +33,9 @@ const Navbar = () => {
     <nav className="navbar bg-base-100 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 w-full">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="text-xl font-bold">
-              Type Challenge
-            </Link>
-            <Link href="/leaderboard" className="btn btn-l btn-ghost">
-              Leaderboard
-            </Link>
-          </div>
+          <Link href="/" className="text-xl font-bold">
+            Type Challenge
+          </Link>
           {user && (
             <div className="flex items-center gap-4">
               <span className="text-sm">

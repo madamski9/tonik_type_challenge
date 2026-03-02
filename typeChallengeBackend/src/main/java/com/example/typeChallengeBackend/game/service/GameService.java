@@ -1,5 +1,7 @@
 package com.example.typeChallengeBackend.game.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.typeChallengeBackend.game.dto.GameResultRequest;
@@ -34,7 +36,12 @@ public class GameService {
         result.setTextSnippet(text);
         result.setAccuracy(request.getAccuracy());
         result.setTimeTaken(request.getTimeTaken());
+        result.setWordsPerMinute(request.getWordsPerMinute());
 
         return gameResultRepository.save(result);
+    }
+
+    public List<GameResult> getLeaderboard() {
+        return gameResultRepository.findTop10ByOrderByAccuracyDescWordsPerMinuteDescTimeTakenAsc();
     }
 }

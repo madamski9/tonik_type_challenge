@@ -29,5 +29,6 @@ public class GameResult {
 
     private Double accuracy;
     private Integer timeTaken;
+    private Double wordsPerMinute;
     private LocalDateTime createdAt = LocalDateTime.now();
 }

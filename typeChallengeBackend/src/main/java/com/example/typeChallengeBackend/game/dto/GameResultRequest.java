@@ -8,4 +8,5 @@ public class GameResultRequest {
     private Long textSnippetId;
     private Double accuracy;
     private Integer timeTaken;
+    private Double wordsPerMinute;
 }
