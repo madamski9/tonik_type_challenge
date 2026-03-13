@@ -189,7 +189,3 @@ Requires PostgreSQL running on localhost:5432
 - **Testing** - Unit and integration tests for both frontend and backend
 - **Monitoring** - Application performance monitoring and error tracking
 - **CI/CD** - Automated testing and deployment pipeline
-
----
-
-*Project created as a recruitment challenge*
